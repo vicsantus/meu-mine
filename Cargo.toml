@@ -1,0 +1,13 @@
+[package]
+name = "meu-mine"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+macroquad = "0.4"
+
+# Read by `cargo quad-apk` (Android build).
+[package.metadata.android]
+package_name = "rust.meumine"
+label = "Meu Mine"
+build_targets = ["aarch64-linux-android"]
