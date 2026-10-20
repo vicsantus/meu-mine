@@ -18,6 +18,7 @@ build_targets = ["aarch64-linux-android"]
 [package.metadata.packager]
 product-name = "Meu Mine"
 identifier = "io.github.vicsantus.meumine"
+icons = ["icons/icon.png"]
 before-packaging-command = "cargo build --release"
 
 [package.metadata.packager.deb]

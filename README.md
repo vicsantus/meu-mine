@@ -27,8 +27,8 @@ Baixe o arquivo do seu sistema na página [Releases](https://github.com/vicsantu
 
 | Sistema | Arquivo | Como instalar |
 |---|---|---|
-| Windows | `Meu Mine_<versão>_x64-setup.exe` | Abra e siga o instalador. |
-| macOS (Apple Silicon) | `Meu Mine_<versão>_aarch64.dmg` | Abra e arraste **Meu Mine** para **Aplicativos**. |
+| Windows | `meu-mine_<versão>_x64-setup.exe` | Abra e siga o instalador. |
+| macOS (Apple Silicon) | `Meu.Mine_<versão>_aarch64.dmg` | Abra e arraste **Meu Mine** para **Aplicativos**. |
 | Linux (Debian/Ubuntu) | `meu-mine_<versão>_amd64.deb` | `sudo apt install ./meu-mine_<versão>_amd64.deb` |
 | Linux (outras distros) | `meu-mine_<versão>_x86_64.AppImage` | `chmod +x` no arquivo e execute. |
 | Android | `meu-mine.apk` | Abra no celular e permita instalar de fontes desconhecidas. |
