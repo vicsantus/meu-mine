@@ -21,6 +21,31 @@ O projeto inclui um gerador de tabuleiros sem adivinhação (*no-guess*), garant
   - Contadores no estilo display digital para minas restantes e cronômetro.
 - **Interface responsiva**: Escalonamento automático da interface para diferentes resoluções e telas móveis.
 
+## Instalação
+
+Baixe o arquivo do seu sistema na página [Releases](https://github.com/vicsantus/meu-mine/releases):
+
+| Sistema | Arquivo | Como instalar |
+|---|---|---|
+| Windows | `Meu Mine_<versão>_x64-setup.exe` | Abra e siga o instalador. |
+| macOS (Apple Silicon) | `Meu Mine_<versão>_aarch64.dmg` | Abra e arraste **Meu Mine** para **Aplicativos**. |
+| Linux (Debian/Ubuntu) | `meu-mine_<versão>_amd64.deb` | `sudo apt install ./meu-mine_<versão>_amd64.deb` |
+| Linux (outras distros) | `meu-mine_<versão>_x86_64.AppImage` | `chmod +x` no arquivo e execute. |
+| Android | `meu-mine.apk` | Abra no celular e permita instalar de fontes desconhecidas. |
+
+Os instaladores não são assinados, então na primeira vez:
+
+- **macOS**: se aparecer "não pode ser aberto", clique com o botão direito no app e escolha **Abrir**.
+- **Windows**: no aviso do SmartScreen, clique em **Mais informações** e depois em **Executar assim mesmo**.
+
+### Publicando uma versão
+
+1. Atualize `version` no `Cargo.toml`.
+2. Crie uma release no GitHub com a tag `v<versão>`.
+3. O workflow [Release](.github/workflows/release.yml) gera os instaladores e o APK e anexa na release.
+
+Para uma release que já existe, rode o workflow em **Actions > Release > Run workflow** informando a tag.
+
 ## Como Executar
 
 ### Pré-requisitos

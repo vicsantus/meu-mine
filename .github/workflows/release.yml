@@ -1,0 +1,63 @@
+name: Release
+
+# Builds the installers and attaches them to a GitHub release:
+# - automatically when a release is published;
+# - by hand (Actions > Release > Run workflow) for a release that already exists.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of the release that gets the files (e.g. v1.0.0)
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            formats: nsis
+            files: target/release/*-setup.exe
+          # ponytail: Apple Silicon only; add an Intel runner (or a lipo universal build) if Intel Macs matter.
+          - os: macos-latest
+            formats: dmg
+            files: target/release/*.dmg
+          - os: ubuntu-latest
+            formats: deb,appimage
+            files: |
+              target/release/*.deb
+              target/release/*.AppImage
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-packager
+      - run: cargo packager --release --formats ${{ matrix.formats }}
+        env:
+          # linuxdeploy is itself an AppImage; this lets it run without FUSE on the runner.
+          APPIMAGE_EXTRACT_AND_RUN: 1
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          files: ${{ matrix.files }}
+
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./build-apk.sh
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          files: target/android-artifacts/release/apk/meu-mine.apk

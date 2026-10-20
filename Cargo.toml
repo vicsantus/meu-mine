@@ -1,7 +1,8 @@
 [package]
 name = "meu-mine"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+description = "Campo Minado sem chute, feito em Rust com macroquad"
 
 [dependencies]
 macroquad = "0.4"
@@ -11,3 +12,13 @@ macroquad = "0.4"
 package_name = "rust.meumine"
 label = "Meu Mine"
 build_targets = ["aarch64-linux-android"]
+
+# Read by `cargo packager` (desktop installers, see .github/workflows/release.yml,
+# which picks the formats per OS with `--formats`).
+[package.metadata.packager]
+product-name = "Meu Mine"
+identifier = "io.github.vicsantus.meumine"
+before-packaging-command = "cargo build --release"
+
+[package.metadata.packager.deb]
+depends = ["libgl1", "libx11-6", "libxi6"]
